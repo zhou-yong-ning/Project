@@ -26,15 +26,18 @@ def is_blank_row(worksheet, row_num, max_col=None):
 def total_amount(worksheet, fbfmc):
     """ 对某sheet的A、E列合并居中，并对E列求和 """
     ws = worksheet
-
-
-
+    # 在第一行上方插入一行
     ws.insert_rows(1, 1)
+    # 设置A1单元格值
     ws['A1'] = fbfmc + '地块属性表'
+    # 设置字体样式
     fontsx = openpyxl.styles.Font(name=u'微软雅黑', bold=True, size=16)
     ws['A1'].font = fontsx
+    # 设置A1单元格对齐方式
     ws['A1'].alignment = Alignment(horizontal="center", vertical="center")
+    # 合并A1到G1单元格
     ws.merge_cells('A1:G1')
+    # 指定第一行行高
     ws.row_dimensions[1].height = 30
     row = 3
     max_row = ws.max_row
@@ -46,11 +49,11 @@ def total_amount(worksheet, fbfmc):
                     and (ws[f'A{working_row}'].value != ws[f'A{working_row - 1}'].value)):  # A列值不等于上一行 或 当前为空行（最后一次合并）
                 # 求和
                 sum_row_end = working_row - 1
+                # 求sum_row_start行到sum_row_end行之和
                 # ws[f'D{working_row}'] = range_sum(ws, f'D{sum_row_start}', f'D{sum_row_end}')
                 ws[f'E{sum_row_start}'] = range_sum(ws, f'D{sum_row_start}', f'D{sum_row_end}')
                 # ws[f'F{working_row}'] = range_sum(ws, f'F{sum_row_start}', f'F{sum_row_end}')
                 ws[f'G{sum_row_start}'] = range_sum(ws, f'F{sum_row_start}', f'F{sum_row_end}')
-                # ws[f'C{working_row}'] = '合计'
                 # 合并居中
                 ws[f'B{sum_row_start}'].alignment = Alignment(horizontal="center", vertical="center")
                 ws[f'A{sum_row_start}'].alignment = Alignment(horizontal="center", vertical="center")
@@ -62,11 +65,15 @@ def total_amount(worksheet, fbfmc):
                 ws.merge_cells(f'G{sum_row_start}:G{sum_row_end}')
                 break
         row = sum_row_end + 1
+    # 指定单元格值
     ws[f'C{max_row + 1}'] = '合计'
+    # 设置单元格格式
     ws[f'C{max_row + 1}'].alignment = Alignment(horizontal="center", vertical="center")
+    # 指定单元格合并
     ws.merge_cells(f'C{max_row + 1}:D{max_row + 1}')
     ws[f'E{max_row + 1}'] = range_sum(ws, f'D{3}', f'D{max_row}')
     ws[f'G{max_row + 1}'] = range_sum(ws, f'F{3}', f'F{max_row}')
+    # 设置列宽度
     ws.column_dimensions['A'].width = 25
     ws.column_dimensions['B'].width = 15
     ws.column_dimensions['C'].width = 30
@@ -74,12 +81,7 @@ def total_amount(worksheet, fbfmc):
     ws.column_dimensions['E'].width = 20
     ws.column_dimensions['F'].width = 20
     ws.column_dimensions['G'].width = 20
-    # ws.insert_rows(1, 1)
-    # ws['A1'] = fbfmc + '地块信息表'
-    # font = openpyxl.styles.Font(name=u'微软雅黑', bold=True, size=16)
-    # ws['A1'].font = font
-    # ws['A1'].alignment = Alignment(horizontal="center", vertical="center")
-    # ws.merge_cells('A1:G1')
+
 
 
 def main(Current_Folder_path, file):
@@ -93,15 +95,6 @@ def main(Current_Folder_path, file):
     wb.save(os.path.join(path_name, out_file_name))
 
 
-# def main(Current_Folder_path, file, cuname):
-#     # 根据情况修改代码
-#     in_file_name = Current_Folder_path + '\\' + file
-#     processing_sheet = 'Sheet1'
-#     path_name = Current_Folder_path + '\\New Folder'
-#     out_file_name = file
-#     wb = openpyxl.load_workbook(filename=os.path.join(path_name, in_file_name))
-#     total_amount(wb[processing_sheet])
-#     wb.save(os.path.join(path_name, out_file_name))
 
 
 if __name__ == '__main__':
