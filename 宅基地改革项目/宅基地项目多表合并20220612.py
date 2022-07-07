@@ -37,6 +37,9 @@ if not len(docx_list) == 0:
         print(A + "转换完成")
         os.remove(Current_Folder_path + "\\" + A)
     word.Quit()
+# 利用推导式获取“.*成员信息.xlsx”数据表
+cyxx = [i for i in file_list if i[-9:] == '成员信息.xlsx']
+print(cyxx[0])
 # 提取文件内容
 df0 = pd.read_excel(Current_Folder_path + "\\" + "宗地属性表.xlsx", dtype='object')
 print('宗地属性表读取成功')
