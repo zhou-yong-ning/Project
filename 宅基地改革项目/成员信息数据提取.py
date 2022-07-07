@@ -53,6 +53,9 @@ if not len(docx_list) == 0:
     word.Quit()
 
 docx_list = [a for a in file_list if a.endswith('.xlsx')]
+# 利用推导式获取“.*成员信息.xlsx”数据表
+cyxx = [i for i in docx_list if i[-9:] == '成员信息.xlsx']
+print(cyxx[0])
 # 提取文件内容
 df0 = pd.read_excel(Current_Folder_path + "\\" + docx_list[0], dtype='object')
 mingchen = df0.loc[0, 'Unnamed: 1']
