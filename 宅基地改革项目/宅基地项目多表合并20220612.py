@@ -40,6 +40,9 @@ if not len(docx_list) == 0:
 # 利用推导式获取“.*成员信息.xlsx”数据表
 cyxx = [i for i in docx_list if i[-9:] == '成员信息.xlsx']
 print(cyxx[0])
+# 或者
+cyxx = [i for i in docx_list if '成员信息.xlsx' in i]
+print(cyxx[0])
 # 提取文件内容
 df0 = pd.read_excel(Current_Folder_path + "\\" + "宗地属性表.xlsx", dtype='object')
 print('宗地属性表读取成功')
