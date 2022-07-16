@@ -88,7 +88,7 @@ def main(Current_Folder_path, file):
     # 根据情况修改代码
     in_file_name = Current_Folder_path + '\\' + file
     processing_sheet = 'Sheet1'
-    path_name = Current_Folder_path + '\\New Folder'
+    path_name = os.path.join(Current_Folder_path,'New Folder')
     out_file_name = file
     wb = openpyxl.load_workbook(filename=os.path.join(path_name, in_file_name))
     total_amount(wb[processing_sheet])
