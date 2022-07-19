@@ -39,7 +39,9 @@ def total_amount(worksheet, fbfmc):
     ws.merge_cells('A1:G1')
     # 指定第一行行高
     ws.row_dimensions[1].height = 30
+    # 从第三行开始
     row = 3
+    # 获取最大行
     max_row = ws.max_row
     while row < max_row:
         sum_row_start, sum_row_end = row, row
