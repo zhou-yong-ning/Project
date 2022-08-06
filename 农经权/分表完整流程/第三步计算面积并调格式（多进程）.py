@@ -116,8 +116,16 @@ if __name__ == '__main__':
     file_list = os.listdir(Current_Folder_path)
     xlsx_list = [a for a in file_list if a.endswith('.xlsx')]
     listnum = 50
+    Arr = []
     for j in range(0, len(xlsx_list), listnum):
         if j + listnum <= len(xlsx_list):
-            Process(target=dxc, args=(xlsx_list[j:j+30], Current_Folder_path)).start()
+            p = Process(target=dxc, args=(xlsx_list[j:j+30], Current_Folder_path))
+            p.start()
+            Arr.append(p)
         else:
-            Process(target=dxc, args=(xlsx_list[j:len(xlsx_list) + 1], Current_Folder_path)).start()
+            p = Process(target=dxc, args=(xlsx_list[j:len(xlsx_list) + 1], Current_Folder_path))
+            p.start()
+            Arr.append(p)
+    print(Arr)
+    for k in Arr:
+        k.join()
