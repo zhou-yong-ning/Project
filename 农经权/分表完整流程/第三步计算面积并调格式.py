@@ -104,7 +104,6 @@ if __name__ == '__main__':
     xlsx_list = [a for a in file_list if a.endswith('.xlsx')]
 
     for file in xlsx_list:
-        df1 = pd.read_excel(Current_Folder_path + '\\' + file, dtype='object')
         fbfmc = file.split('.')[0]
         # 根据情况修改代码
         processing_sheet = 'Sheet1'
