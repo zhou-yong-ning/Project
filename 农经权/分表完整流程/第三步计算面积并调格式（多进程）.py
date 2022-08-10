@@ -119,7 +119,7 @@ if __name__ == '__main__':
     Arr = []
     for j in range(0, len(xlsx_list), listnum):
         if j + listnum <= len(xlsx_list):
-            p = Process(target=dxc, args=(xlsx_list[j:j+30], Current_Folder_path))
+            p = Process(target=dxc, args=(xlsx_list[j:j+listnum], Current_Folder_path))
             p.start()
             Arr.append(p)
         else:
