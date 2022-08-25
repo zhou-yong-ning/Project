@@ -16,19 +16,12 @@ def total_amount(worksheet):
     for i in ceel_range:
         for j in i:
             j.alignment = Alignment(horizontal="center", vertical="center")
-    ws.column_dimensions['A'].width = 25
-    ws.column_dimensions['B'].width = 29
-    ws.column_dimensions['C'].width = 29
-    ws.column_dimensions['D'].width = 18
-    ws.column_dimensions['E'].width = 13
-    ws.column_dimensions['F'].width = 8
-    ws.column_dimensions['G'].width = 9
-    ws.column_dimensions['H'].width = 12
-    ws.column_dimensions['I'].width = 12
-    ws.column_dimensions['J'].width = 12
-    ws.column_dimensions['K'].width = 14
-    ws.column_dimensions['L'].width = 30
-    ws.column_dimensions['M'].width = 30
+    listnum = [25, 10, 29, 29, 18, 13, 8, 9, 12, 12, 15, 12, 20, 30, 30]
+    for j in range(1, 16):
+        # 根据列的数字返回字母
+        k = openpyxl.utils.get_column_letter(2)
+        # 根据listnum列表设置列宽
+        ws.column_dimensions[k].width = listnum[j-1]
 
 
 # 获取当前文件夹路径
