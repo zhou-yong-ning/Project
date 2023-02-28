@@ -10,6 +10,7 @@ def range_sum(worksheet, start, end):
     for row in worksheet[start:end]:
         for cell in row:
             if cell.value != None:
+                cell_value = float(cell.value)
                 sum += cell.value
     return sum
 
