@@ -34,4 +34,5 @@ for k in filename1:
     file = [i for i in file_list if i.startswith(k)]
     # 生成压缩包路径
     zip_file = os.path.join(Current_Folder_path, 'NewFolder', '.'.join([k, 'zip']))
+    # 调用方法
     compress_files_to_zip(zip_file, file)
