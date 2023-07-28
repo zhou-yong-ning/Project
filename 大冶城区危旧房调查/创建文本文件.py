@@ -1,7 +1,8 @@
 import os
 
 # 定义要创建的文件数量
-num_files = 5
+num_files = input('输入要创建的文件数量:')
+num_files = int(num_files)
 
 # 定义要创建的文件名前缀
 file_prefix = "file"
