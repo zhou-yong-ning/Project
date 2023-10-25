@@ -1,8 +1,14 @@
 import requests
 from fake_useragent import UserAgent
 import pandas as pd
+import os
 
-rename_df = pd.read_excel('图片爬取.xlsx', dtype='object')
+Current_Folder_path = os.getcwd()
+if not os.path.exists(Current_Folder_path + '\\NewFolder'):
+    os.mkdir(Current_Folder_path + '\\NewFolder')
+file_list = os.listdir(Current_Folder_path)
+excel_list = [a for a in file_list if a.endswith('.xlsx')]
+rename_df = pd.read_excel(excel_list[0], dtype='object')
 for i in rename_df.index.tolist():
     # pandas条件查询
     src_url = rename_df.loc[i, 'url']
@@ -11,6 +17,6 @@ for i in rename_df.index.tolist():
         'User-Agent': UserAgent().chrome
     }
     src_resp = requests.get(url=src_url, headers=src_headers).content
-    with open('./新建文件夹/' + name, 'wb') as f:
+    with open('./NewFolder/' + name, 'wb') as f:
         f.write(src_resp)
     print(name + '下载成功')
