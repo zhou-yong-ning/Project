@@ -19,8 +19,6 @@ def TO_TXT(content, name):
 Current_Folder_path = os.getcwd()
 if not os.path.exists(Current_Folder_path + '\\NewFolder'):
     os.mkdir(Current_Folder_path + '\\NewFolder')
-# 遍历当前文件夹下的文件
-file_list0 = os.listdir(Current_Folder_path)
 # 提取后缀为json的文件
 file_list = os.listdir(Current_Folder_path)
 json_list = [a for a in file_list if a.endswith('.json')]
