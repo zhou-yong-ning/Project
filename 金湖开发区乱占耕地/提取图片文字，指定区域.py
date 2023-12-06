@@ -8,8 +8,8 @@ import pandas as pd
 
 def extract_text_from_image(image_path):
     # 打开图像文件
-    img = Image.open(image_path)
-    image = img.crop((176, 567, 1394, 860))  # (左上角x，左上角y，右下角x，右下角y)
+    image = Image.open(image_path)
+    image = image.crop((176, 567, 1394, 860))  # (左上角x，左上角y，右下角x，右下角y)
     # 使用Pytesseract提取文字
     extracted_text = pytesseract.image_to_string(image,lang='chi_sim')
     return [extracted_text]
