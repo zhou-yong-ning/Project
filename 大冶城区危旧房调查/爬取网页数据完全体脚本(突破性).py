@@ -27,7 +27,7 @@ for i in rename_df.index.tolist():
         # pandas条件查询
         src_url = rename_df.loc[i, 'url1']
         url = 'http://59.208.147.83:7090/risk-census/building/findHouseByFwbh?fwbh='+src_url
-        # data_text = requests.post(url = url, data=headers, json=data) # post请求
+        # data_text = requests.post(url = url, headers=headers, data=data) # post请求
         data_text = requests.get(url=url, headers=headers).text
         with open('./NewFolder/'+str(i)+'.txt', 'w', encoding='utf-8') as f:
             f.write(data_text)
