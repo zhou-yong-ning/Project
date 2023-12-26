@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 
-# pdf合并方法
+# txt转excel
 def vertex_txt(file_paths, output_path):
     # 读取txt文件
     df = pd.read_csv(file_paths, header=None, dtype='object')
