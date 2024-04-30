@@ -17,5 +17,5 @@ for i in id_list:
     idmerge_list = [i, 'POLYGON Z (('+','.join(df.loc[i, 'XY'].tolist())+'))']
     print(idmerge_list)
     DF_LIST.append(idmerge_list)
-df_shuchu = pd.DataFrame(DF_LIST, columns=['ID', 'XY'])
+df_shuchu = pd.DataFrame(DF_LIST, columns=['ID', 'Geometry'])
 df_shuchu.to_excel('坐标合并.xlsx')
