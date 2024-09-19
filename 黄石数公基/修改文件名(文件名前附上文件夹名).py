@@ -16,13 +16,10 @@ for old in rename_list:
     # 提取文件夹所在文件夹路径
     old_folder_path = '\\'.join(old.split('\\')[0:-1])
     # 提取文件所在文件夹名
-    folder_name = str(old.split('\\')[-2])
-    # 提取文件后缀
-    old_name1 = str(old.split('\\')[-1])
-    old_name2 = old_name1.split('.')[0]
-    houzhui = old_name1.split('.')[1:]
+    folder_name = old.split('\\')[1:]
     # 新文件名
-    new_name = '.'.join([folder_name + '-' + old_name2] + houzhui)
+    new_name = '-'.join(folder_name)
+    print(new_name)
     # 新文件名路径
     new_name_path = os.path.join(old_folder_path, new_name)
     # 文件重命名
